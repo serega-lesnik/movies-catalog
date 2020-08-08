@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Switch, Route } from "react-router-dom";
+import MoviesList from './MoviesList';
 
 const App = () => {
 	return(
-		<section>
-			My App Component
-		</section>
+		<Switch>
+			<Route path='/' component={MoviesList} />
+		</Switch>
 	);
 };
 
