@@ -2,12 +2,9 @@ import React, {
 	useState,
 	useEffect,
 } from 'react';
-import {
-	useSelector,
-	shallowEqual,
-	useDispatch,
-} from 'react-redux';
 
+import { ContextMovies } from '../redux/movies';
+import { ContextGenres } from '../redux/genres';
 import { SORT_BY, SORT_KEY, GENRE_KEY } from '../constants';
 import { getMovies } from '../redux/actions/moviesActions';
 import { getGenres } from '../redux/actions/genresActions';
@@ -22,9 +19,8 @@ const MoviesList = () => {
 	const [ page, setPage ] = useState(1);
 	const [ genreFilter, setGenre ] = useState(0);
 	const [ sorted, setSorted ] = useState(SORT_BY[0].id);
-	const moviesStore = useSelector(store => store.movies, shallowEqual);
-	const genresStore = useSelector(store => store.genres, shallowEqual);
-	const dispatch = useDispatch();
+	const { moviesStore, moviesDispatch } = React.useContext(ContextMovies);
+	const { genresStore, genresDispatch } = React.useContext(ContextGenres);
 
 	const getSerchParams = () => {
 		const searchParams = {
@@ -38,13 +34,13 @@ const MoviesList = () => {
 	}
 
 	useEffect(
-		() => getMovies(getSerchParams())(dispatch),
+		() => getMovies(getSerchParams())(moviesDispatch),
 		[page, genreFilter, sorted]
 	);
 
 	useEffect(
-		() => getGenres()(dispatch),
-		[dispatch]
+		() => getGenres()(genresDispatch),
+		[genresDispatch]
 	);
 
 	const handleChangePage = num => {

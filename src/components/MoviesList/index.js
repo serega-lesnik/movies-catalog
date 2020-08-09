@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
+import { ROUTE } from '../../constants';
 import Poster from '../Poster';
 
 import './moviesList.css';
@@ -9,12 +11,12 @@ const MoviesListComponent = ({ movies }) => {
 	const renderMovies = () => (
 		movies.map(movie => {
 			return (
-				<div key={movie.id} className='movie-row'>
+				<Link to={`${ROUTE.movie}/${movie.id}`} key={movie.id} className='movie-row'>
 					<Poster posterPath={movie.poster_path} />
 					<span className='movie-name'>
 						{movie.title}
 					</span>
-				</div>
+				</Link>
 			)
 		})
 	);

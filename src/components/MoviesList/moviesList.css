@@ -3,6 +3,7 @@
 	flex-direction: column;
 }
 .movie-row {
+	text-decoration: none;
 	display: flex;
 	justify-content: left;
 	align-items: center;

@@ -1,5 +1,6 @@
 export const ROUTE = {
 	home: '/',
+	movie: '/movie',
 };
 export const API_URL = 'https://api.themoviedb.org/3';
 export const API_KEY = '4237669ebd35e8010beee2f55fd45546';
@@ -29,4 +30,3 @@ export const SORT_BY = [
 		name: 'Release',
 	}
 ];
-// popularity.asc, popularity.desc, release_date.asc, release_date.desc, revenue.asc, revenue.desc, primary_release_date.asc, primary_release_date.desc, original_title.asc, original_title.desc, vote_average.asc, vote_average.desc, vote_count.asc, vote_count.desc

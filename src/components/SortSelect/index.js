@@ -15,9 +15,7 @@ const SortSelect = ({
 		<div>
 			<span> {label}</span>
 			<select value={selected} onChange={onChange}>
-				{addNone &&
-					<option value={0} key={'none'}>None</option>
-				}
+				{addNone && <option value={0} key={'none'}>None</option>}
 				{sortList.map(item => (
 					<option value={item.id} key={item.id}>{item.name}</option>
 				))}

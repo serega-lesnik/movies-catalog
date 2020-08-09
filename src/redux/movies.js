@@ -1,15 +1,18 @@
+import React from "react";
 import {
 	MOVIES,
 	MOVIES_FETCHING,
 	MOVIES_ERROR,
 } from './actions/moviesActions';
 
-const initialState = {
+export const initialState = {
 	fetched: false,
 	isFetching: false,
 	data: null,
 	error: null,
 };
+
+export const ContextMovies = React.createContext();
 
 const movies = (state = initialState, action) => {
 	const { type } = action;

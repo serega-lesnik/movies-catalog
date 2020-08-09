@@ -1,15 +1,18 @@
-const initialState = {
+import React from "react";
+import {
+	GENRES,
+	GENRES_FETCHING,
+	GENRES_ERROR,
+} from './actions/genresActions';
+
+export const initialState = {
 	fetched: false,
 	isFetching: false,
 	data: null,
 	error: null,
 };
 
-import {
-	GENRES,
-	GENRES_FETCHING,
-	GENRES_ERROR,
-} from './actions/genresActions';
+export const ContextGenres = React.createContext();
 
 const genres = (state = initialState, action) => {
 	const { type } = action;
