@@ -1,0 +1,9 @@
+.page-title {
+	display: flex;
+}
+.page-title span {
+	margin: auto;
+	font-size: 2.5em;
+	font-weight: bold;
+	color: green;
+}

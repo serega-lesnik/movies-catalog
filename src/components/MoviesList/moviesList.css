@@ -1,0 +1,14 @@
+.moves {
+	display: flex;
+	flex-direction: column;
+}
+.movie-row {
+	display: flex;
+	justify-content: left;
+	align-items: center;
+}
+.movie-name {
+	font-size: 2em;
+	font-weight: bold;
+	color: goldenrod;
+}

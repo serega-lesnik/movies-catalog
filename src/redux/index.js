@@ -1,7 +1,10 @@
 import { combineReducers, createStore } from 'redux';
+import movies from './movies';
+import genres from './genres';
 
 const allReducers = {
-	movies: () => ({data: 0})
+	movies,
+	genres,
 };
 
 const reducer = combineReducers({

@@ -1,0 +1,10 @@
+.pagination-button {
+	color: blue;
+	padding: 0 16px;
+	cursor: pointer;
+}
+
+.pagination-button.disabled {
+	color: darkgray;
+	cursor: auto;
+}
