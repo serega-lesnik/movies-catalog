@@ -5,7 +5,7 @@ export const MOVIES = 'movies.action';
 export const MOVIES_FETCHING = 'movies.fetching';
 export const MOVIES_ERROR = 'movies.error';
 
-export const getMovies = (page = 1) => dispatch => {
+export const getMovies = searchParams => dispatch => {
 	dispatch({
 		type: MOVIES_FETCHING,
 	});
@@ -24,5 +24,5 @@ export const getMovies = (page = 1) => dispatch => {
 		});
 	};
 
-	Http.get(API_PATHS.movieList, { page }).then(onSuccess).catch(onError);
+	Http.get(API_PATHS.movieList, searchParams).then(onSuccess).catch(onError);
 };

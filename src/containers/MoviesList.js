@@ -8,6 +8,7 @@ import {
 	useDispatch,
 } from 'react-redux';
 
+import { SORT_BY, SORT_KEY, GENRE_KEY } from '../constants';
 import { getMovies } from '../redux/actions/moviesActions';
 import { getGenres } from '../redux/actions/genresActions';
 
@@ -15,17 +16,30 @@ import Loader from '../components/Loader';
 import Title from '../components/Title';
 import Pagination from '../components/Pagination';
 import MoviesListComponent from '../components/MoviesList';
-import Genres from '../components/Genres';
+import SortSelect from '../components/SortSelect';
 
 const MoviesList = () => {
 	const [ page, setPage ] = useState(1);
+	const [ genreFilter, setGenre ] = useState(0);
+	const [ sorted, setSorted ] = useState(SORT_BY[0].id);
 	const moviesStore = useSelector(store => store.movies, shallowEqual);
 	const genresStore = useSelector(store => store.genres, shallowEqual);
 	const dispatch = useDispatch();
 
+	const getSerchParams = () => {
+		const searchParams = {
+			page,
+			[SORT_KEY]: sorted,
+		};
+		if (genreFilter) {
+			searchParams[GENRE_KEY] = genreFilter;
+		}
+		return searchParams;
+	}
+
 	useEffect(
-		() => getMovies(page)(dispatch),
-		[page]
+		() => getMovies(getSerchParams())(dispatch),
+		[page, genreFilter, sorted]
 	);
 
 	useEffect(
@@ -38,7 +52,11 @@ const MoviesList = () => {
 	};
 
 	const handleGenreChange = id => {
-		console.log('--- genre change:', id);
+		setGenre(id);
+	}
+
+	const handleSortChange = id => {
+		setSorted(id)
 	}
 
 	const renderError = () => (
@@ -46,28 +64,6 @@ const MoviesList = () => {
 			Error: {moviesStore.error}
 		</div>
 	);
-
-	const renderData = () => {
-		const { data: {
-			page,
-			total_pages,
-			total_results,
-			results,
-		}} = moviesStore;
-
-		return (
-			<div>
-				<Title name={'Your movie list.'} />
-				{renderGenres()}
-				<MoviesListComponent movies={results} />
-				<Pagination
-					page={page}
-					totalPages={total_pages}
-					handleChangePage={handleChangePage}
-				/>
-			</div>
-		);
-	};
 
 	const renderGenres = () => {
 		const {
@@ -82,9 +78,12 @@ const MoviesList = () => {
 			return renderError();
 		} else if (!isFetching && fetched && !error && data) {
 			return (
-				<Genres
-					{...data}
-					handleGenreChange={handleGenreChange}
+				<SortSelect
+					label={'Filter of Genre:'}
+					sortList={data.genres}
+					selected={genreFilter}
+					handleSortChange={handleGenreChange}
+					addNone={true}
 				/>
 			);
 		} else {
@@ -94,6 +93,40 @@ const MoviesList = () => {
 				</div>
 			);
 		}
+	};
+
+	const renderFilter = () => {
+		return (
+			<SortSelect
+				label={'Sort by:'}
+				sortList={SORT_BY}
+				selected={sorted}
+				handleSortChange={handleSortChange}
+			/>
+		);
+	};
+
+	const renderData = () => {
+		const { data: {
+			page,
+			total_pages,
+			total_results,
+			results,
+		}} = moviesStore;
+
+		return (
+			<div>
+				<Title name={'Your movie list.'} />
+				{renderGenres()}
+				{renderFilter()}
+				<MoviesListComponent movies={results} />
+				<Pagination
+					page={page}
+					totalPages={total_pages}
+					handleChangePage={handleChangePage}
+				/>
+			</div>
+		);
 	};
 
 	const renderPage = () => {
