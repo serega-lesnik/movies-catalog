@@ -1,6 +1,7 @@
 import React, {
 	useState,
 	useEffect,
+	useContext,
 } from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -25,15 +26,15 @@ const MoviesList = () => {
 	const [ page, setPage ] = useState(getQueryParam('page', 1));
 	const [ genreFilter, setGenre ] = useState(getQueryParam(GENRE_KEY, 0));
 	const [ sorted, setSorted ] = useState(getQueryParam(SORT_KEY, SORT_BY[0].id));
-	const { moviesStore, moviesDispatch } = React.useContext(ContextMovies);
-	const { genresStore, genresDispatch } = React.useContext(ContextGenres);
+	const { moviesStore, moviesDispatch } = useContext(ContextMovies);
+	const { genresStore, genresDispatch } = useContext(ContextGenres);
 
 	const getSerchParams = () => {
 		const searchParams = {
 			page,
 			[SORT_KEY]: sorted,
 		};
-		if (genreFilter) {
+		if (genreFilter && genreFilter != 0) {
 			searchParams[GENRE_KEY] = genreFilter;
 		}
 		return searchParams;

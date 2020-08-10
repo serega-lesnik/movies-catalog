@@ -10,7 +10,7 @@ const App = () => {
 	return(
 		<Switch>
 			<Route exact path={ROUTE.home} component={MoviesList} />
-			<Route path={`${ROUTE.movie}/:slug`} component={MovieItem} />
+			<Route path={`${ROUTE.movie}/:movieId`} component={MovieItem} />
 			<Route path={'*'} component={Page404} />
 		</Switch>
 	);

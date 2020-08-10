@@ -7,6 +7,7 @@ export const API_KEY = '4237669ebd35e8010beee2f55fd45546';
 export const LANGUAGE = 'en-US';
 export const API_PATHS = {
 	movieList: '/discover/movie',
+	movieItem: '/movie/',
 	genres: '/genre/movie/list',
 };
 export const API_IMAGES = {

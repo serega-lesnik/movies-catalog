@@ -1,0 +1,30 @@
+.row-container {
+	display: flex;
+	align-items: center;
+}
+.row-container.top {
+	align-items: flex-start;
+}
+.genre-item {
+	padding: 4px 8px;
+	background-color: goldenrod;
+	color: white;
+	border-radius: 5px;
+}
+h3 {
+	font-size: 2.25em;
+	color: yellowgreen;
+	text-align: center;
+}
+h4 {
+	font-size: 1.5em;
+	color: rgb(0, 75, 236);
+}
+p {
+	font-size: 1.25em;
+}
+span {
+	font-size: 1.1em;
+	font-weight: bold;
+	margin: 16px 8px;
+}
