@@ -2,10 +2,12 @@ import React, {
 	useState,
 	useEffect,
 } from 'react';
+import { useHistory } from 'react-router-dom';
 
+import { useQuery } from '../utils';
 import { ContextMovies } from '../redux/movies';
 import { ContextGenres } from '../redux/genres';
-import { SORT_BY, SORT_KEY, GENRE_KEY } from '../constants';
+import { SORT_BY, SORT_KEY, GENRE_KEY, ROUTE } from '../constants';
 import { getMovies } from '../redux/actions/moviesActions';
 import { getGenres } from '../redux/actions/genresActions';
 
@@ -16,9 +18,13 @@ import MoviesListComponent from '../components/MoviesList';
 import SortSelect from '../components/SortSelect';
 
 const MoviesList = () => {
-	const [ page, setPage ] = useState(1);
-	const [ genreFilter, setGenre ] = useState(0);
-	const [ sorted, setSorted ] = useState(SORT_BY[0].id);
+	const history = useHistory();
+	const query = useQuery();
+	const getQueryParam = (name, defaultVal) => query.get(name) || defaultVal;
+
+	const [ page, setPage ] = useState(getQueryParam('page', 1));
+	const [ genreFilter, setGenre ] = useState(getQueryParam(GENRE_KEY, 0));
+	const [ sorted, setSorted ] = useState(getQueryParam(SORT_KEY, SORT_BY[0].id));
 	const { moviesStore, moviesDispatch } = React.useContext(ContextMovies);
 	const { genresStore, genresDispatch } = React.useContext(ContextGenres);
 
@@ -34,7 +40,16 @@ const MoviesList = () => {
 	}
 
 	useEffect(
-		() => getMovies(getSerchParams())(moviesDispatch),
+		() => {
+			const searchParams = getSerchParams();
+			getMovies(searchParams)(moviesDispatch);
+			let queryString = ROUTE.home;
+			Object.keys(searchParams).forEach((key, i) => {
+				const sepaator = i === 0 ? '?' : '&';
+				queryString += `${sepaator}${key}=${searchParams[key]}`
+			});
+			history.push(queryString);
+		},
 		[page, genreFilter, sorted]
 	);
 
