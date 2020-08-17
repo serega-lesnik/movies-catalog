@@ -24,7 +24,7 @@ const getHeaders = () => {
 	return headers;
 };
 
-const getUrl = (endpoint, searchParams) => {
+const getUrl = (endpoint, searchParams = {}) => {
 	const params = {
 		api_key: API_KEY,
 		language: LANGUAGE,
@@ -44,6 +44,32 @@ const Http = {
 		};
 
 		const url = getUrl(endpoint, searchParams);
+
+		return fetch(url, config)
+			.then(handleResponse);
+	},
+
+	post: (endpoint, data) => {
+		const config = {
+			method: 'POST',
+			body: JSON.stringify(data),
+			headers: getHeaders(),
+		};
+
+		const url = getUrl(endpoint);
+
+		return fetch(url, config)
+			.then(handleResponse);
+	},
+
+	delete: (endpoint, data) => {
+		const config = {
+			method: 'DELETE',
+			body: JSON.stringify(data),
+			headers: getHeaders(),
+		};
+
+		const url = getUrl(endpoint);
 
 		return fetch(url, config)
 			.then(handleResponse);

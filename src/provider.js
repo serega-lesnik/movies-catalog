@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 
 import moviesReducer, {
 	ContextMovies,
@@ -15,18 +15,34 @@ import movieItemReducer, {
 	initialState as initialMovieItem
 } from './redux/movieItem';
 
+import authReducer, {
+	ContextAuth,
+	initialState as initialAuth
+} from './redux/auth';
+
+import profileReducer, {
+	ContextProfile,
+	initialState as initialProfile
+} from './redux/profile';
+
 const ReactProvider = ({children}) => {
-	const [ moviesStore, moviesDispatch ] = React.useReducer(moviesReducer, initialMovies);
-	const [ genresStore, genresDispatch ] = React.useReducer(genresReducer, initialGenres);
-	const [ movieItemStore, movieItemDispatch ] = React.useReducer(movieItemReducer, initialMovieItem);
+	const [ moviesStore, moviesDispatch ] = useReducer(moviesReducer, initialMovies);
+	const [ genresStore, genresDispatch ] = useReducer(genresReducer, initialGenres);
+	const [ movieItemStore, movieItemDispatch ] = useReducer(movieItemReducer, initialMovieItem);
+	const [ authStore, authDispatch ] = useReducer(authReducer, initialAuth);
+	const [ profileStore, profileDispatch ] = useReducer(profileReducer, initialProfile);
 	return (
-		<ContextGenres.Provider value={{ genresDispatch, genresStore }}>
-			<ContextMovies.Provider value={{ moviesDispatch, moviesStore }}>
-				<ContextMovieItem.Provider value={{ movieItemDispatch, movieItemStore }}>
-					{children}
-				</ContextMovieItem.Provider>
-			</ContextMovies.Provider>
-		</ContextGenres.Provider>
+		<ContextAuth.Provider value={{ authDispatch, authStore }}>
+			<ContextProfile.Provider value={{ profileDispatch, profileStore }}>
+				<ContextGenres.Provider value={{ genresDispatch, genresStore }}>
+					<ContextMovies.Provider value={{ moviesDispatch, moviesStore }}>
+						<ContextMovieItem.Provider value={{ movieItemDispatch, movieItemStore }}>
+							{children}
+						</ContextMovieItem.Provider>
+					</ContextMovies.Provider>
+				</ContextGenres.Provider>
+			</ContextProfile.Provider>
+		</ContextAuth.Provider>
 	);
 };
 
