@@ -49,14 +49,14 @@ const Http = {
 			.then(handleResponse);
 	},
 
-	post: (endpoint, data) => {
+	post: (endpoint, data, searchParams = {}) => {
 		const config = {
 			method: 'POST',
 			body: JSON.stringify(data),
 			headers: getHeaders(),
 		};
 
-		const url = getUrl(endpoint);
+		const url = getUrl(endpoint, searchParams);
 
 		return fetch(url, config)
 			.then(handleResponse);

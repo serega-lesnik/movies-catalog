@@ -8,7 +8,7 @@ import { ROUTE, API_AUTH, OLD_LOCATION_KEY } from '../constants';
 import { ContextAuth } from '../redux/auth';
 import { logIn, logOut } from '../redux/actions/authActions';
 import { ContextProfile } from '../redux/profile';
-import { getProfile } from '../redux/actions/profileAction';
+import { getProfile } from '../redux/actions/profileActions';
 
 import Login from '../components/Login'
 import Profile from '../components/Profile';

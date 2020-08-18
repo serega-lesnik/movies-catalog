@@ -3,13 +3,20 @@
 	flex-direction: column;
 }
 .movie-row {
-	text-decoration: none;
 	display: flex;
-	justify-content: left;
+	justify-content: space-between;
 	align-items: center;
+	border-bottom: solid 1px gainsboro;
+	margin: 16px 0 0 0;
 }
 .movie-name {
 	font-size: 2em;
 	font-weight: bold;
 	color: goldenrod;
+}
+.movie-link {
+	display: flex;
+	justify-content: left;
+	align-items: flex-start;
+	text-decoration: none;
 }

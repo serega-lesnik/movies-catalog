@@ -1,0 +1,57 @@
+.favorite-btn {
+	margin: 16px;
+	cursor: pointer;
+}
+.favorite-icon {
+	position: relative;
+	width: 50px;
+	height: 45px;
+}
+.favorite-icon:before,
+.favorite-icon:after {
+	position: absolute;
+	content: "";
+	left: 25px;
+	top: 0;
+	width: 25px;
+	height: 40px;
+	background-color: gainsboro;
+	transition: background-color 0.3s ease;
+	-moz-border-radius: 25px 25px 0 0;
+	border-radius: 25px 25px 0 0;
+	-webkit-transform: rotate(-45deg);
+		 -moz-transform: rotate(-45deg);
+			-ms-transform: rotate(-45deg);
+			 -o-transform: rotate(-45deg);
+					transform: rotate(-45deg);
+	-webkit-transform-origin: 0 100%;
+		 -moz-transform-origin: 0 100%;
+			-ms-transform-origin: 0 100%;
+			 -o-transform-origin: 0 100%;
+					transform-origin: 0 100%;
+}
+.favorite-icon:after {
+	left: 0;
+	-webkit-transform: rotate(45deg);
+		 -moz-transform: rotate(45deg);
+			-ms-transform: rotate(45deg);
+			 -o-transform: rotate(45deg);
+					transform: rotate(45deg);
+	-webkit-transform-origin: 100% 100%;
+		 -moz-transform-origin: 100% 100%;
+			-ms-transform-origin: 100% 100%;
+			 -o-transform-origin: 100% 100%;
+					transform-origin :100% 100%;
+}
+.favorite-icon:hover:before,
+.favorite-icon:hover:after {
+	background-color: grey;
+}
+.favorite-icon.favorite-active:before,
+.favorite-icon.favorite-active:after {
+	background-color: red;
+}
+.favorite-icon.favorite-active:hover:before,
+.favorite-icon.favorite-active:hover:after {
+	background-color: tomato;
+}

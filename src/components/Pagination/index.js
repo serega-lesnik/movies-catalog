@@ -21,7 +21,7 @@ const Pagination = ({
 	};
 
 	return (
-		<div>
+		<div className='pagination'>
 				<span
 					className={isFirst ? `${baseClassBtn} ${disableClass}` : baseClassBtn}
 					onClick={isFirst ? null : decrementPage}

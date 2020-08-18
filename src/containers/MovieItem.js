@@ -9,6 +9,7 @@ import { getMovieItem } from '../redux/actions/movieItemActions';
 
 import Loader from '../components/Loader';
 import MovieItemComponent from '../components/MovieItem';
+import Favorite from './Favorite';
 
 const MovieItem = () => {
 	const { movieId } = useParams();
@@ -29,6 +30,7 @@ const MovieItem = () => {
 
 		return (<MovieItemComponent
 			goBack={goBack}
+			Favorite={Favorite}
 			{...data}
 		/>);
 	};
@@ -61,8 +63,6 @@ const MovieItem = () => {
 		}
 	};
 
-	console.log('--- movieId:', movieId);
-	console.log('--- movieItemStore:', movieItemStore.data);
 	return (
 		<div>
 			{renderPage()}

@@ -15,6 +15,8 @@ export const API_PATHS = {
   session: '/authentication/session',
   sessionCreate: '/authentication/session/new',
   account: '/account',
+  favoritesGetSub: '/favorite/movies',
+  favoritePostSub: '/favorite',
 };
 export const API_IMAGES = {
 	path: 'https://image.tmdb.org/t/p/',

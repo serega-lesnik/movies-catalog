@@ -6,17 +6,20 @@ import Poster from '../Poster';
 
 import './moviesList.css';
 
-const MoviesListComponent = ({ movies }) => {
+const MoviesListComponent = ({ movies, Favorite }) => {
 
 	const renderMovies = () => (
-		movies.map(movie => {
+		movies.map((movie, i) => {
 			return (
-				<Link to={`${ROUTE.movie}/${movie.id}`} key={movie.id} className='movie-row'>
-					<Poster posterPath={movie.poster_path} />
-					<span className='movie-name'>
-						{movie.title}
-					</span>
-				</Link>
+				<div key={movie.id} className='movie-row'>
+					<Link to={`${ROUTE.movie}/${movie.id}`} className='movie-link'>
+						<Poster posterPath={movie.poster_path} />
+						<span className='movie-name'>
+							{movie.title}
+						</span>
+					</Link>
+					<Favorite movieId={movie.id} first={i == 0} />
+				</div>
 			)
 		})
 	);

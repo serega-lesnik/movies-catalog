@@ -17,6 +17,7 @@ import Title from '../components/Title';
 import Pagination from '../components/Pagination';
 import MoviesListComponent from '../components/MoviesList';
 import SortSelect from '../components/SortSelect';
+import Favorite from './Favorite';
 
 const MoviesList = () => {
 	const history = useHistory();
@@ -131,7 +132,12 @@ const MoviesList = () => {
 				<Title name={'Your movie list.'} />
 				{renderGenres()}
 				{renderFilter()}
-				<MoviesListComponent movies={results} />
+				<Pagination
+					page={page}
+					totalPages={total_pages}
+					handleChangePage={handleChangePage}
+				/>
+				<MoviesListComponent movies={results} Favorite={Favorite} />
 				<Pagination
 					page={page}
 					totalPages={total_pages}

@@ -3,7 +3,7 @@ import {
 	PROFILE,
 	PROFILE_FETCHING,
 	PROFILE_ERROR,
-} from './actions/profileAction';
+} from './actions/profileActions';
 
 export const initialState = {
 	fetched: false,

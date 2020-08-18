@@ -1,19 +1,19 @@
 import React from 'react';
 
-// import { API_IMAGES } from '../../constants';
 import Poster from '../Poster';
 
 import './movieItem.css';
 
 const MovieItemComponent = ({
 	goBack,
+	Favorite,
+	id,
 	title,
 	genres,
 	popularity,
 	overview,
 	poster_path,
 	release_date,
-	// backdrop_path,
 }) => {
 
 	const handleClickBack = e => {
@@ -26,6 +26,9 @@ const MovieItemComponent = ({
 		{/* <div style={{ backgroundImage: `url( ${API_IMAGES.path}${API_IMAGES.fullSize}${backdrop_path} )`}}> */}
 			<button onClick={handleClickBack}>Go back</button>
 			<h3>{title}</h3>
+			<div className='row-container'>
+				<Favorite movieId={id} />
+			</div>
 			<div className='row-container'>
 				<h4>Popularity:</h4>
 				<span>{popularity}</span>
